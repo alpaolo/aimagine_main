@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load  media %}
+{% block content %}
+<h3>{{ section}}</h3>
+<h5>{{ subsection }}</h5>
+
+<hr class="mt-0 mb-4">
+
+<div class="row">
+  <p>
+    <button id="readme" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample" onClick="btnReadmeClicked(this)">
+      Leggimi
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      Carica un immagine per verificare quanti visi sono presenti. Verranno elencate una serie di caratteristiche e proprietà relative alle stesse. 
+    </div>
+  </div>
+</div>
+<hr class="mt-0 mb-4">
+<div class="row">
+  <form enctype="multipart/form-data" action="{% url 'iafacedetection' 'analyze' %}" method="POST" id="form1">
+    {% csrf_token %}
+  <div>
+    <div>
+      <input type="file" class="input-group-text" id="inputGroupFile04" name="file_to_analyze" value=""/>
+      <label for="inputGroupFile04"></label>
+    </div>
+    <div>
+      <input id="analyze" class="btn btn-secondary" type="submit" value="Analizza" />
+    </div>
+  </div>
+</form>
+</div>
+<br/>
+<div class="row">
+{% if imgsrc != '' %} 
+  <img src="{% static imgsrc %}" class="img-thumbnail rounded float-left" style="max-width:400px; height:auto" />
+  {% if rekog_imgsrc != '' %} 
+    <img src="{% static rekog_imgsrc %}" class="img-thumbnail rounded float-right" style="max-width:400px; height:auto" />
+  {% endif %}
+  <br/>
+  {{ message }} E' stata analizzata: {{ imgsrc }}<br/>
+  <hr class="mt-0 mb-4">
+  <h4>Sono stati rilevati {{ n_items }} visi!</h4>
+  <hr class="mt-0 mb-4"> 
+{% endif %}
+</div>
+
+
+{% for item in items %}
+{{ item }}<br><hr class="mt-0 mb-4">
+{% endfor %}
+{% endblock content %}
+
