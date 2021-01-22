@@ -2,8 +2,8 @@
 {% load static %}
 {% load  media %}
 {% block content %}
-<h3>{{ section}}</h3>
-<h5>{{ subsection }}</h5>
+<h5><strong>{{ section}}</strong> {{ subsection }}</h5>
+
 
 <hr class="mt-0 mb-4">
 
@@ -43,9 +43,9 @@
     <img src="{% static rekog_imgsrc %}" class="img-thumbnail rounded float-right" style="max-width:400px; height:auto" />
   {% endif %}
   <br/>
-  {{ message }} E' stata analizzata: {{ imgsrc }}<br/>
-  <hr class="mt-0 mb-4">
-  <h4>Sono stati rilevati {{ n_items }} visi!</h4>
+  {{ message }}
+  
+  <h6>File: {{ imgsrc }} - Sono stati rilevati {{ n_items }} visi.</h6>
   <hr class="mt-0 mb-4"> 
 {% endif %}
 </div>

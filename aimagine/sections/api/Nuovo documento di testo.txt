@@ -1,0 +1,2 @@
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{}' 'https://127.0.0.1:8000/api/v1'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' 'https://127.0.0.1:8000/api/v1'

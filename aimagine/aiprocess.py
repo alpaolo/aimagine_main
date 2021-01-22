@@ -13,7 +13,8 @@ def face_detector(abs_imagepath, filename): # va tutto spostato in models
         with open(abs_imagepath, 'rb') as image:
             items = client.detect_faces(Image={'Bytes': image.read()})['FaceDetails']
         # Carica l'immagine in pillow e disegna ( Per ottimizzare si potrebbe usare il byte array )
-        im = Image.open(abs_imagepath) 
+        im = Image.open(abs_imagepath)
+       
         imgWidth, imgHeight = im.size 
         enhancer = ImageEnhance.Brightness(im)
         enhanced_im = enhancer.enhance(0.4)
@@ -25,6 +26,8 @@ def face_detector(abs_imagepath, filename): # va tutto spostato in models
             width = imgWidth * box['Width']
             height = imgHeight * box['Height']        
             draw.rectangle([left,top, left + width, top + height], outline='#ffff00')
+            cropped_im =  im.crop((left, top, left+width, top+height))
+            enhanced_im.paste(cropped_im,(int(left), int(top)))
         # Costruisce il nome ed il percorso per la visualizzazione sul server     
         rekog_filename =  'rekog_' + filename
         rekog_filepath = os.path.join(conf_settings.MEDIA_ROOT , rekog_filename)

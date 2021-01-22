@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: HttpResponse('Is the index page')),
     path('ai/', include('aimagine.sections.ai.urls')),
+    path('api/', include('aimagine.sections.api.urls')),
     #path('download/', include('videodl.downloaderurls')),
     #path('upload/', include('videodl.uploaderurls')),
     
