@@ -13,7 +13,6 @@ from ... yolo import YoloDetector
 
 
 
-
 # This views satisfy any kind of url with appropriate view and template but is confused
 args = {}
 args ={'section':'ai', 'title': 'Image recognition'}
