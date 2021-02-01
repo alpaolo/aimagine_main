@@ -10,4 +10,4 @@ git rm --cached aimagine\people.jpg
 
 git status
 
-git commit -m man1
+git commit -m %man1%
