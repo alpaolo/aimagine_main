@@ -192,6 +192,7 @@ class YoloDetector:
 		return {'bboxes' : detected_bboxes, 'result_img' : self.img_to_detect}
 
 	
+	
 
 	def __del__(self):
 		self.bboxes = None
