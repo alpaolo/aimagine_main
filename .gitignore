@@ -1,0 +1,4 @@
+aimagine\yolov3-wider.cfg
+aimagine\yolov3-wider_16000.weights
+aimagine\coco.names.wider
+aimagine\people.jpg

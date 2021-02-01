@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ExifTags, ImageColor, ImageEnhance
 import os
 import boto3
 
+# Call AWS Rekognition
 def face_detector(abs_imagepath, filename): # va tutto spostato in models
         # Rileva il percorso assoluto per leggere l'immagine da processare
         items = []
@@ -38,4 +39,20 @@ def face_detector(abs_imagepath, filename): # va tutto spostato in models
         return {'items':items, 'n_items':len(items), 'rekog_filepath' : rekog_filepath, 'rekog_filename' : rekog_filename}
 
 
-
+def person_tracker():
+    client=boto3.client('rekognition')
+    response = client.start_face_detection(
+    Video={
+        'S3Object': {
+            'Bucket': 'unitopix-20190606215653-deployment',
+            'Name': 'people3.mp4'
+        }
+    },
+    ClientRequestToken='ppl3',
+    NotificationChannel={
+        'SNSTopicArn': 'arn:aws:sns:eu-west-1:091267016496:myrecog_topic',
+        'RoleArn': 'arn:aws:iam::091267016496:role/recogadmin'
+    },
+    JobTag='brumotti')
+    print (response)
+    return response

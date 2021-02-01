@@ -11,6 +11,7 @@ urlpatterns = [
     path('', lambda request: HttpResponse('Is the api index page')),
     path('v1', api_v1_views.test, name='apiv1test'),
     path('v1(?P<action>\w+)/$', api_v1_views.test, name='apiv1test'),
+    path('v1/blur', api_v1_views.yolo_faceblur, name='apiv1yolofaceblur'),
  
     
     #path('imagerecognition/(?P<action>\w+)/$', views.process, name='process'),
@@ -18,7 +19,6 @@ urlpatterns = [
 ] 
 
 # Serving the media files in development mode
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #else: urlpatterns += staticfiles_urlpatterns()

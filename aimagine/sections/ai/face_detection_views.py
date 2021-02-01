@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ExifTags, ImageColor, ImageEnhance
 import boto3
 from ... recog import detect_labels_local_file, getphoto
-from ... aiprocess import face_detector 
+from ... aiprocess import face_detector , person_tracker
 
 
 
@@ -21,7 +21,7 @@ def index(request):
     return HttpResponse("Hello, world. Is upload section")
 
 
-def face_detection(request, action=''): # va tutto spostato in models
+def aws_face_detection(request, action=''): # va tutto spostato in models
     args = {}
     args ={'section':'Intelligenza artificiale:', 'subsection': 'Riconoscimento facciale', 'imgsrc':'', 'rekog_imgsrc' : ''}
     args['imgsrc'] = ''
@@ -47,5 +47,19 @@ def face_detection(request, action=''): # va tutto spostato in models
     else:
         args['message'] = "Nessun file da analizzare"
         return render(request, 'ai.html', args)
+
+def person_track(request, action=''):
+    args = {}
+
+    if action == 'track' and request.method == 'POST':
+        print ( "passa di qua")
+        result = person_tracker()
+        args['result'] = result
+        return render(request, 'person.html', args)
+    else:
+        args['message'] = "premi il bottone"
+        return render(request, 'person.html', args)
+    
+
             
 

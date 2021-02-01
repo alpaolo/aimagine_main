@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load  media %}
+{% block content %}
+
+
+
+
+<div class="row">
+  {{ message }}
+  <form enctype="multipart/form-data" action="{% url 'iapersontracker' 'track' %}" method="POST" id="form1">
+    {% csrf_token %}
+    <div>
+      <input id="analyze" class="btn btn-secondary" type="submit" value="Analizza" />
+    </div>
+</form>
+{{ result }}
+</div>
+{% endblock content %}
+
+
