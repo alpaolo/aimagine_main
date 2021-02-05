@@ -1,0 +1,4 @@
+Questa applicazione permette di interrogare la api di aws (boto)
+ma anche da essere interrogato da wordpress o altre applicazioni
+
+Il wordpress di test è in tools\xammp\httdocs\wordpress con il plugin aimagine

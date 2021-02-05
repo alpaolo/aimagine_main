@@ -21,9 +21,11 @@ def index(request):
     return HttpResponse("Hello, world. Is upload section")
 
 def test(request):
-    data = {'currency' : 'euro', 'count' : 5}
+    data = {'name' : 'pippo', 'age' : 50}
     return JsonResponse(data)
 
+def send_img():
+    pass
 
 def yolo_faceblur(request):
     detector = YoloDetector()
