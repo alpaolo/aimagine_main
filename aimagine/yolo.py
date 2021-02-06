@@ -15,6 +15,8 @@ import cv2
 import os
 import sys
 from PIL import Image
+from io import BytesIO
+import binascii
 
 
 
@@ -57,14 +59,25 @@ class YoloDetector:
 		print(os.path)
 		#mettere una verifica server
 
-		self.img_to_detect = Image.open(self.path+"\people.jpg").convert('RGB')
-		self.cv_image = np.array(self.img_to_detect)  
+		#self.img_to_detect = Image.open(self.path+"\people.jpg").convert('RGB')
+		data_bytes = img_to_detect.encode("utf-8")
+		#bytes = binascii.hexlify(data_bytes)
+		#img = Image.open(BytesIO(data_bytes))
+		stream = BytesIO(data_bytes)
+		image = Image.open(stream).convert("RGB")
+		stream.close()
+		image.show()
+		
+		#self.cv_image =stream.convert("RGB")
+		#self.cv_image.show()
+		#self.cv_image = np.array(img_to_detect)  
+		print (len(self.cv_image))
 
-		# load the COCO class labels our YOLO model was trained on
+		#-----load the COCO class labels our YOLO model was trained on
 		self.labelsPath = self.path+"\coco.names.wider"
 		self.LABELS = open(self.labelsPath).read().strip().split("\n")
 
-		# initialize a list of colors to represent each possible class label
+		#----initialize a list of colors to represent each possible class label
 		np.random.seed(42)
 		self.COLORS = np.random.randint(0, 255, size=(len(self.LABELS), 3),
 			dtype="uint8")
@@ -118,6 +131,7 @@ class YoloDetector:
 
 		# if the frame dimensions are empty, grab them
 		if self.W is None or self.H is None:
+			#*****Use try catch
 			(self.H, self.W) = self.cv_image.shape[:2]
 
 
