@@ -59,19 +59,9 @@ class YoloDetector:
 		print(os.path)
 		#mettere una verifica server
 
-		#self.img_to_detect = Image.open(self.path+"\people.jpg").convert('RGB')
-		data_bytes = img_to_detect.encode("utf-8")
-		#bytes = binascii.hexlify(data_bytes)
-		#img = Image.open(BytesIO(data_bytes))
-		stream = BytesIO(data_bytes)
-		image = Image.open(stream).convert("RGB")
-		stream.close()
-		image.show()
 		
-		#self.cv_image =stream.convert("RGB")
-		#self.cv_image.show()
-		#self.cv_image = np.array(img_to_detect)  
-		print (len(self.cv_image))
+		self.cv_image = np.array(img_to_detect)  
+		
 
 		#-----load the COCO class labels our YOLO model was trained on
 		self.labelsPath = self.path+"\coco.names.wider"
