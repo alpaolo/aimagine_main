@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.http import HttpResponse
 from django.conf.urls import url
 from django.conf import settings as settings
@@ -10,9 +10,9 @@ from . import face_detection_views
 urlpatterns = [
     path('', lambda request: HttpResponse('Is the ai index page')),
     path('tracking/', face_detection_views.person_track, name='iaawspersontracker'),
-    path('tracking/(?P<action>\w+)/$', face_detection_views.person_track, name='iapersontracker'),
+    re_path('tracking/(?P<action>\w+)/$', face_detection_views.person_track, name='iapersontracker'),
     path('facedetection/', face_detection_views.aws_face_detection, name='iaawsfacedetection'),
-    path('facedetection/(?P<action>\w+)/$', face_detection_views.aws_face_detection, name='iaawsfacedetection'),
+    re_path('facedetection/(?P<action>\w+)/$', face_detection_views.aws_face_detection, name='iaawsfacedetection'),
     
     #path('imagerecognition/(?P<action>\w+)/$', views.process, name='process'),
 
