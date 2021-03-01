@@ -20,7 +20,6 @@ args ={'section':'ai', 'title': 'Image recognition'}
 def index(request):
     return HttpResponse("Hello, world. Is upload section")
 
-
 def aws_face_detection(request, action=''): # va tutto spostato in models
     args = {}
     args ={'section':'Intelligenza artificiale:', 'subsection': 'Riconoscimento facciale', 'imgsrc':'', 'rekog_imgsrc' : ''}
