@@ -17,8 +17,13 @@ from ... aiprocess import face_detector , person_tracker
 args = {}
 args ={'section':'ai', 'title': 'Image recognition'}
 
+
+
+
 def index(request):
     return HttpResponse("Hello, world. Is upload section")
+
+
 
 def aws_face_detection(request, action=''): # va tutto spostato in models
     args = {}
@@ -46,6 +51,9 @@ def aws_face_detection(request, action=''): # va tutto spostato in models
     else:
         args['message'] = "Nessun file da analizzare"
         return render(request, 'ai.html', args)
+
+
+
 
 def person_track(request, action=''):
     args = {}
