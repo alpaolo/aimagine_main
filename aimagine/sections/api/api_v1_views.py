@@ -115,4 +115,5 @@ def aws_detector(imgdata): # va tutto spostato in models
         client=boto3.client('rekognition')
         items = client.detect_faces(Image={'Bytes': imgdata})['FaceDetails']
         #-----------------------------------------------------------------------------------------------
+        
         return {'items':items, 'n_items':len(items)}
